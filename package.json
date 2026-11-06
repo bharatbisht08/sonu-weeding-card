@@ -1,0 +1,13 @@
+{
+  "name": "sonu-kajal-wedding-invitation",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Sonu & Kajal wedding invitation website with downloadable PDF cards",
+  "type": "module",
+  "scripts": {
+    "build:pdfs": "node tools/build-pdfs.mjs"
+  },
+  "devDependencies": {
+    "playwright-core": "1.52.0"
+  }
+}

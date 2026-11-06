@@ -1,0 +1,473 @@
+<!DOCTYPE html>
+<html lang="en" data-lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <title>Sonu & Kajal · Wedding Invitation</title>
+  <meta name="description" content="Wedding invitation of Sonu Kanojiya & Kajal — Khoda Colony, Rajiv Nagar, Ghaziabad. With love from the Kanojiya family." />
+  <meta name="theme-color" content="#4f0d1a" />
+  <meta property="og:title" content="Sonu Kanojiya & Kajal · Wedding Invitation" />
+  <meta property="og:description" content="Together with their families, we invite you to celebrate the beginning of their beautiful journey." />
+  <meta property="og:image" content="assets/images/groom.jpg" />
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700&family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500&family=Great+Vibes&family=Mukta:wght@400;600;700&family=Tiro+Devanagari+Hindi:ital@0;1&family=Yatra+One&display=swap" rel="stylesheet" />
+
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="stylesheet" href="pdf.css" />
+  <noscript><style>.doors,.lang-modal{display:none!important}.reveal{opacity:1!important;transform:none!important}</style></noscript>
+</head>
+<body class="is-locked">
+  <a class="skip-link" href="#main">Skip to invitation</a>
+
+  <!-- Effects layer: falling petals, floating hearts, gold particles, confetti -->
+  <canvas id="fx-canvas" aria-hidden="true"></canvas>
+
+  <!-- ============ Opening doors (entrance animation) ============ -->
+  <div class="doors" aria-hidden="true">
+    <div class="door door--left"><div class="door__mandala orn" data-orn="mandala"></div></div>
+    <div class="door door--right"><div class="door__mandala orn" data-orn="mandala"></div></div>
+  </div>
+
+  <!-- ============ Language selection modal ============ -->
+  <div class="lang-modal" id="lang-modal" role="dialog" aria-modal="true" aria-labelledby="lang-title" hidden>
+    <div class="lang-modal__bg orn" data-orn="mandala" aria-hidden="true"></div>
+    <div class="lang-modal__card">
+      <div class="lang-modal__kalash orn" data-orn="kalash" aria-hidden="true"></div>
+      <p class="lang-modal__names">Sonu <span>&amp;</span> Kajal</p>
+      <h1 id="lang-title" class="lang-modal__title">Choose Your Language</h1>
+      <p class="lang-modal__sub">Apni pasand ki bhasha chuniye <span lang="hi">अपनी पसंद की भाषा चुनिए</span></p>
+      <div class="lang-modal__options">
+        <button class="lang-card" type="button" data-set-lang="en" lang="en">
+          <span class="lang-card__icon">🇬🇧</span>
+          <span class="lang-card__name">English</span>
+          <span class="lang-card__native">Welcome to the wedding</span>
+        </button>
+        <button class="lang-card" type="button" data-set-lang="hi" lang="hi">
+          <span class="lang-card__icon">🇮🇳</span>
+          <span class="lang-card__name">हिंदी</span>
+          <span class="lang-card__native">शादी में आपका स्वागत है</span>
+        </button>
+        <button class="lang-card" type="button" data-set-lang="bh" lang="bho">
+          <span class="lang-card__icon">❤️</span>
+          <span class="lang-card__name">भोजपुरी</span>
+          <span class="lang-card__native">बियाह में रउआ सभे के स्वागत बा</span>
+        </button>
+      </div>
+      <div class="lang-modal__divider orn" data-orn="divider" aria-hidden="true"></div>
+    </div>
+  </div>
+
+  <!-- ============ Navigation ============ -->
+  <header class="nav" id="nav">
+    <a class="nav__brand" href="#top" aria-label="Sonu and Kajal — top of page">S<span>♥</span>K</a>
+    <nav class="nav__links" id="nav-links" aria-label="Sections">
+      <a href="#official" data-i18n="nav.invite">Invitation</a>
+      <a href="#couple" data-i18n="nav.couple">Bride &amp; Groom</a>
+      <a href="#family" data-i18n="nav.family">Family</a>
+      <a href="#venue" data-i18n="nav.venue">Venue</a>
+      <a href="#fun" data-i18n="nav.fun">Friend Zone</a>
+      <a href="#downloads" data-i18n="nav.download">Download</a>
+    </nav>
+    <div class="nav__tools">
+      <div class="lang-switch" role="group" aria-label="Language">
+        <button type="button" data-set-lang="en" lang="en" aria-label="English">EN</button>
+        <button type="button" data-set-lang="hi" lang="hi" aria-label="हिंदी">हिं</button>
+        <button type="button" data-set-lang="bh" lang="bho" aria-label="भोजपुरी">भोज</button>
+      </div>
+      <button class="icon-btn" type="button" id="fx-toggle" aria-pressed="true" data-i18n-attr="aria-label:effects.toggle,title:effects.toggle" aria-label="Toggle animations">✨</button>
+      <button class="icon-btn nav__menu" type="button" id="nav-menu" aria-expanded="false" aria-controls="nav-links" data-i18n-attr="aria-label:nav.menu" aria-label="Menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </header>
+
+  <main id="main">
+    <!-- ============ HERO ============ -->
+    <section class="hero" id="top">
+      <div class="hero__toran orn" data-orn="toran" aria-hidden="true"></div>
+      <div class="hero__mandala orn" data-orn="mandala" aria-hidden="true"></div>
+      <div class="hero__floaters" aria-hidden="true">
+        <span style="--x:8%;--y:30%;--d:0s">🪔</span>
+        <span style="--x:88%;--y:26%;--d:1.4s">🌸</span>
+        <span style="--x:14%;--y:74%;--d:2.2s">💐</span>
+        <span style="--x:84%;--y:70%;--d:.8s">🪔</span>
+        <span style="--x:50%;--y:92%;--d:3s">🌼</span>
+      </div>
+
+      <div class="hero__inner">
+        <p class="hero__invocation h-anim" style="--i:0" data-i18n="invocation" data-invocation>॥ Shri Ganeshaya Namah ॥</p>
+        <h2 class="hero__title h-anim" style="--i:1" data-i18n="hero.title">Wedding Invitation</h2>
+        <div class="divider orn h-anim" style="--i:2" data-orn="divider" aria-hidden="true"></div>
+
+        <div class="hero__portraits h-anim" style="--i:3">
+          <figure class="arch arch--groom">
+            <img src="assets/images/groom.jpg" alt="Sonu Kanojiya, the groom, in a cream sherwani with a maroon velvet dupatta" width="646" height="1199" fetchpriority="high" />
+          </figure>
+          <div class="hero__knot" aria-hidden="true">❤</div>
+          <figure class="arch arch--bride">
+            <img src="assets/images/bride.jpg" alt="Kajal, the bride, in a maroon bridal lehenga with gold embroidery" width="646" height="1199" fetchpriority="high" />
+          </figure>
+        </div>
+
+        <h1 class="hero__names h-anim" style="--i:4">
+          <span class="name" data-w="groom.name">Sonu Kanojiya</span>
+          <span class="amp">&amp;</span>
+          <span class="name" data-w="bride.name">Kajal</span>
+        </h1>
+        <p class="hero__tagline h-anim" style="--i:5" data-i18n="hero.tagline">Together with their families, we invite you to celebrate the beginning of their beautiful journey.</p>
+        <p class="date-pill h-anim" style="--i:6"><span class="date-pill__icon" aria-hidden="true">📅</span><span data-date-text>Wedding Date &amp; Muhurat – To Be Announced</span></p>
+        <div class="hero__cta h-anim" style="--i:7">
+          <a class="btn btn--gold" href="#official" data-i18n="hero.cta1">Open Invitation</a>
+          <a class="btn btn--ghost" href="#venue" data-i18n="hero.cta2">Get Directions</a>
+        </div>
+      </div>
+      <a class="hero__scroll" href="#couple" aria-hidden="true" tabindex="-1"><span data-i18n="hero.scroll">Scroll</span><i></i></a>
+    </section>
+
+    <!-- ============ BRIDE & GROOM ============ -->
+    <section class="section section--cream couple" id="couple">
+      <header class="section__head reveal">
+        <div class="orn section__icon" data-orn="kalash" aria-hidden="true"></div>
+        <h2 class="section__title" data-i18n="couple.title">The Bride &amp; The Groom</h2>
+        <p class="section__sub" data-i18n="couple.sub">Two hearts, one beautiful journey</p>
+        <div class="divider divider--dark orn" data-orn="divider" data-color="#8b1a2b" aria-hidden="true"></div>
+      </header>
+
+      <div class="couple__grid">
+        <article class="portrait reveal" style="--d:.05s">
+          <div class="portrait__frame">
+            <span class="portrait__corner orn" data-orn="corner" data-rot="0" aria-hidden="true"></span>
+            <span class="portrait__corner portrait__corner--tr orn" data-orn="corner" data-rot="90" aria-hidden="true"></span>
+            <img src="assets/images/groom.jpg" alt="Sonu Kanojiya in his wedding sherwani" loading="lazy" width="646" height="1199" />
+          </div>
+          <p class="portrait__role" data-i18n="couple.groomRole">The Groom</p>
+          <h3 class="portrait__name" data-w="groom.name">Sonu Kanojiya</h3>
+          <p class="portrait__note" data-i18n="couple.groomNote">Dashing in his royal sherwani</p>
+        </article>
+
+        <div class="couple__heart reveal" aria-hidden="true"><span>❤</span></div>
+
+        <article class="portrait reveal" style="--d:.2s">
+          <div class="portrait__frame">
+            <span class="portrait__corner orn" data-orn="corner" data-rot="0" aria-hidden="true"></span>
+            <span class="portrait__corner portrait__corner--tr orn" data-orn="corner" data-rot="90" aria-hidden="true"></span>
+            <img src="assets/images/bride.jpg" alt="Kajal in her bridal lehenga" loading="lazy" width="646" height="1199" />
+          </div>
+          <p class="portrait__role" data-i18n="couple.brideRole">The Bride</p>
+          <h3 class="portrait__name" data-w="bride.name">Kajal</h3>
+          <p class="portrait__note" data-i18n="couple.brideNote">Radiant in her bridal lehenga</p>
+        </article>
+      </div>
+
+      <div class="rituals reveal">
+        <h3 class="rituals__title" data-i18n="rituals.title">Wedding Celebrations</h3>
+        <ul class="rituals__list" id="rituals-list"></ul>
+        <p class="rituals__note" data-i18n="rituals.note">The ceremony schedule will be shared soon</p>
+      </div>
+    </section>
+
+    <!-- ============ OFFICIAL INVITATION ============ -->
+    <section class="section section--maroon official" id="official">
+      <header class="section__head reveal">
+        <h2 class="section__title" data-i18n="official.title">Official Invitation</h2>
+        <p class="section__sub" data-i18n="official.sub">For our respected elders, relatives &amp; well-wishers</p>
+      </header>
+
+      <div class="royal-card reveal">
+        <div class="royal-card__inner">
+          <span class="royal-card__corner c-tl orn" data-orn="corner" data-rot="0" aria-hidden="true"></span>
+          <span class="royal-card__corner c-tr orn" data-orn="corner" data-rot="90" aria-hidden="true"></span>
+          <span class="royal-card__corner c-br orn" data-orn="corner" data-rot="180" aria-hidden="true"></span>
+          <span class="royal-card__corner c-bl orn" data-orn="corner" data-rot="270" aria-hidden="true"></span>
+          <div class="royal-card__mandala orn" data-orn="mandala" aria-hidden="true"></div>
+
+          <div class="royal-card__kalash orn" data-orn="kalash" aria-hidden="true"></div>
+          <p class="royal-card__invocation" data-i18n="invocation" data-invocation>॥ Shri Ganeshaya Namah ॥</p>
+          <h3 class="royal-card__title" data-i18n="official.cardTitle">Shubh Vivah</h3>
+          <div class="divider orn" data-orn="divider" aria-hidden="true"></div>
+
+          <p class="royal-card__memory"><span data-i18n="official.memory">In loving memory of</span> <strong data-w="grandfather.name">Late Shri Mishrilal Kanojiya</strong></p>
+
+          <p class="royal-card__text" data-i18n="official.opening">With the divine blessings of the Almighty and our revered elders, we joyfully announce the auspicious wedding of</p>
+          <p class="royal-card__name" data-w="groom.name">Sonu Kanojiya</p>
+          <p class="royal-card__relation">
+            <span><span data-i18n="official.sonOf">Son of</span> <strong data-w="father.name">Shri Kamlesh Kanojiya</strong></span>
+            <span class="sep" aria-hidden="true">✦</span>
+            <span><span data-i18n="official.grandsonOf">Grandson of</span> <strong data-w="grandfather.name">Late Shri Mishrilal Kanojiya</strong></span>
+          </p>
+          <p class="royal-card__with" data-i18n="official.with">with</p>
+          <p class="royal-card__name" data-w="bride.name">Kajal</p>
+          <p class="royal-card__text" data-i18n="official.closing">We cordially request the honour of your gracious presence, along with your family, to bless the couple.</p>
+
+          <div class="divider orn" data-orn="divider" aria-hidden="true"></div>
+
+          <dl class="royal-card__info">
+            <div>
+              <dt data-i18n="official.dateLabel">Date &amp; Muhurat</dt>
+              <dd data-date-short>To Be Announced</dd>
+            </div>
+            <div>
+              <dt data-i18n="official.venueLabel">Wedding Venue</dt>
+              <dd><span data-w="venue.address">Khoda Colony, Rajiv Nagar, Ghaziabad, Uttar Pradesh – 201014</span><br />
+                <a class="text-link" data-href="venue.mapUrl" target="_blank" rel="noopener" data-i18n="official.viewMap">View on Google Maps</a></dd>
+            </div>
+            <div>
+              <dt data-i18n="official.residenceLabel">Groom's Residence</dt>
+              <dd data-w="residence">C1/12, Madhu Vihar, Dwarka Sector 3, New Delhi</dd>
+            </div>
+            <div>
+              <dt data-i18n="official.contactLabel">Contact</dt>
+              <dd>
+                <a class="text-link" data-tel="groom.phone" data-w="groom.phone">7982642906</a> <small>(<span data-w="groom.short">Sonu</span>)</small><br />
+                <a class="text-link" data-tel="father.phone" data-w="father.phone">9560676361</a> <small>(<span data-w="father.short">Kamlesh ji</span>)</small>
+              </dd>
+            </div>
+          </dl>
+
+          <div class="royal-card__awaiting">
+            <p class="label" data-i18n="official.awaiting">Awaiting your gracious presence</p>
+            <p><strong data-w="father.name">Shri Kamlesh Kanojiya</strong> <span data-i18n="official.familyLine">&amp; The Kanojiya Family</span></p>
+            <p class="label" data-i18n="official.eager">Eagerly awaiting your arrival</p>
+            <p class="royal-card__brothers" data-brothers-inline></p>
+          </div>
+        </div>
+      </div>
+
+      <div class="center reveal">
+        <button class="btn btn--gold btn--lg" type="button" data-pdf="family">
+          <span class="btn__icon" aria-hidden="true">⬇</span><span data-i18n="official.download">Download Family &amp; Relatives Card PDF</span>
+        </button>
+      </div>
+    </section>
+
+    <!-- ============ FAMILY ============ -->
+    <section class="section section--cream family" id="family">
+      <header class="section__head reveal">
+        <p class="section__kicker" data-i18n="family.sub">With love and blessings from</p>
+        <h2 class="section__title" data-i18n="family.title">The Kanojiya Family</h2>
+        <div class="divider divider--dark orn" data-orn="divider" data-color="#8b1a2b" aria-hidden="true"></div>
+      </header>
+
+      <div class="family__tree">
+        <article class="fcard fcard--memory reveal">
+          <div class="fcard__medal" aria-hidden="true">🪔</div>
+          <p class="fcard__role" data-i18n="family.grandfather">Grandfather · In Loving Memory</p>
+          <h3 class="fcard__name" data-w="grandfather.name">Late Shri Mishrilal Kanojiya</h3>
+        </article>
+        <div class="family__line" aria-hidden="true"></div>
+        <article class="fcard reveal">
+          <div class="fcard__medal" aria-hidden="true">KK</div>
+          <p class="fcard__role" data-i18n="family.father">Father of the Groom</p>
+          <h3 class="fcard__name" data-w="father.name">Shri Kamlesh Kanojiya</h3>
+          <a class="fcard__call" data-tel="father.phone"><span aria-hidden="true">📞</span> <span data-w="father.phone">9560676361</span></a>
+        </article>
+        <div class="family__line" aria-hidden="true"></div>
+        <article class="fcard fcard--groom reveal">
+          <div class="fcard__medal fcard__medal--photo" aria-hidden="true"><img src="assets/images/groom.jpg" alt="" loading="lazy" /></div>
+          <p class="fcard__role" data-i18n="family.groom">The Groom</p>
+          <h3 class="fcard__name" data-w="groom.name">Sonu Kanojiya</h3>
+          <a class="fcard__call" data-tel="groom.phone"><span aria-hidden="true">📞</span> <span data-w="groom.phone">7982642906</span></a>
+        </article>
+      </div>
+
+      <h3 class="family__brothers-title reveal" data-i18n="family.brothersTitle">The Brothers — Baraat Commanders</h3>
+      <div class="family__brothers" id="brothers-grid"></div>
+
+      <div class="contact reveal">
+        <h3 class="contact__title" data-i18n="family.contactTitle">Contact Us</h3>
+        <div class="contact__grid">
+          <a class="contact__btn" data-tel="groom.phone">
+            <span class="contact__icon" aria-hidden="true">📞</span>
+            <span><small data-i18n="family.sonuLabel">Sonu (Groom)</small><strong data-w="groom.phone">7982642906</strong></span>
+          </a>
+          <a class="contact__btn" data-tel="father.phone">
+            <span class="contact__icon" aria-hidden="true">📞</span>
+            <span><small data-i18n="family.fatherLabel">Kamlesh ji (Father)</small><strong data-w="father.phone">9560676361</strong></span>
+          </a>
+        </div>
+        <p class="contact__address"><span aria-hidden="true">🏠</span> <strong data-i18n="family.residence">Residence</strong>: <span data-w="residence">C1/12, Madhu Vihar, Dwarka Sector 3, New Delhi</span></p>
+      </div>
+    </section>
+
+    <!-- ============ VENUE / MAP ============ -->
+    <section class="section section--road venue" id="venue">
+      <header class="section__head reveal">
+        <p class="section__kicker">📍 Khoda Colony · Ghaziabad</p>
+        <h2 class="section__title" data-i18n="map.title">Delhi Se Shaadi Tak Ka Safar</h2>
+        <p class="section__sub" data-i18n="map.sub">From Delhi to the wedding venue — let Google Maps guide your way</p>
+      </header>
+
+      <div class="venue__grid">
+        <div class="journey reveal">
+          <h3 class="journey__title" data-i18n="map.journeyTitle">Road Trip to the Wedding</h3>
+          <div class="journey__road">
+            <div class="journey__asphalt" aria-hidden="true"><i class="journey__lane"></i></div>
+            <div class="journey__car orn" data-orn="car" aria-hidden="true"></div>
+            <ol class="journey__stops" id="journey-stops"></ol>
+          </div>
+          <p class="journey__express"><span aria-hidden="true">🎺</span> <span data-i18n="map.express">Barati Express is on the way!</span></p>
+        </div>
+
+        <div class="mapcard reveal" style="--d:.15s">
+          <div class="mapcard__frame">
+            <iframe id="venue-map" loading="lazy" referrerpolicy="no-referrer-when-downgrade" allowfullscreen
+              title="Map of the wedding venue in Khoda Colony, Ghaziabad" data-i18n-attr="title:map.iframeTitle"></iframe>
+          </div>
+          <div class="mapcard__body">
+            <h3 class="mapcard__title"><span aria-hidden="true">💒</span> <span data-i18n="map.venueTitle">Wedding Venue</span></h3>
+            <p class="mapcard__address" data-w="venue.address">Khoda Colony, Rajiv Nagar, Ghaziabad, Uttar Pradesh – 201014</p>
+            <p class="mapcard__coords"><span data-i18n="map.coords">Coordinates</span>: <code data-coords>28.6294171, 77.3375074</code></p>
+            <div class="mapcard__actions">
+              <a class="btn btn--gold btn--block btn--stack" data-href="venue.directionsUrl" target="_blank" rel="noopener">
+                <span><span aria-hidden="true">🧭</span> <span data-i18n="map.btnDirections">Delhi Se Venue Tak Rasta Dekhein</span></span>
+                <small data-i18n="map.btnDirectionsSub">Directions from Delhi to the venue</small>
+              </a>
+              <a class="btn btn--ghost" data-href="venue.mapUrl" target="_blank" rel="noopener"><span aria-hidden="true">📍</span> <span data-i18n="map.btnOpen">Open Venue in Google Maps</span></a>
+              <a class="btn btn--ghost" data-href="venue.myLocationUrl" target="_blank" rel="noopener"><span aria-hidden="true">📲</span> <span data-i18n="map.btnMyLoc">Directions From My Location</span></a>
+              <button class="btn btn--ghost" type="button" id="copy-address"><span aria-hidden="true">📋</span> <span data-i18n="map.btnCopy">Copy Address</span></button>
+            </div>
+            <p class="mapcard__note" data-i18n="map.note">Route, distance and travel time are calculated live by Google Maps.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ FUNNY INVITATION ============ -->
+    <section class="section section--festive fun" id="fun">
+      <header class="section__head reveal">
+        <p class="section__kicker fun__kicker" data-i18n="fun.kicker">👯 Friend Zone</p>
+        <h2 class="fun__title" data-i18n="fun.title">Ab Shaadi Mein Aana Hi Padega!</h2>
+        <p class="fun__sub" data-i18n="fun.sub">Attendance is compulsory. Excuses will not be accepted!</p>
+        <span class="stamp" data-i18n="fun.stamp">Compulsory</span>
+      </header>
+
+      <ul class="fun__notes" id="fun-notes"></ul>
+
+      <div class="rsvp reveal">
+        <h3 class="rsvp__title" data-i18n="fun.rsvpTitle">So… are you coming?</h3>
+        <div class="rsvp__arena" id="rsvp-arena">
+          <button class="btn btn--festive btn--lg" type="button" id="rsvp-yes" data-i18n="fun.yes">I'll Definitely Come! 🙌</button>
+          <button class="btn btn--plain" type="button" id="rsvp-no" data-i18n="fun.no">Sorry, can't come 😅</button>
+        </div>
+        <p class="rsvp__msg" id="rsvp-msg" role="status" aria-live="polite"></p>
+      </div>
+
+      <div class="excuses reveal">
+        <h3 class="excuses__title" data-i18n="fun.excuseTitle">Excuse Rejection Counter 🚫</h3>
+        <p class="excuses__prompt" data-i18n="fun.excusePrompt">Try your excuse:</p>
+        <div class="excuses__chips" id="excuse-chips"></div>
+        <p class="excuses__answer" id="excuse-answer" role="status" aria-live="polite"></p>
+        <p class="excuses__count"><span data-i18n="fun.excuseCount">Excuses rejected so far:</span> <strong id="excuse-count">0</strong></p>
+      </div>
+
+      <div class="center fun__download reveal">
+        <button class="btn btn--festive btn--lg" type="button" data-pdf="friends">
+          <span class="btn__icon" aria-hidden="true">⬇</span><span data-i18n="fun.download">Download Friends Card PDF</span>
+        </button>
+      </div>
+    </section>
+
+    <!-- ============ BARATI SPECIAL DEPARTMENT (humour, website only) ============ -->
+    <section class="section section--night dept" id="special">
+      <header class="section__head reveal">
+        <span class="dept__badge" data-i18n="daru.badge">Just for fun · Fictional</span>
+        <h2 class="dept__title" data-i18n="daru.title">Baratiyon Ka Special Department 🍻</h2>
+        <p class="dept__sub" data-i18n="daru.sub">Thirst Department – Special Barati Refreshment Zone</p>
+      </header>
+
+      <div class="dept__signs" id="dept-signs" aria-label="Signboards"></div>
+      <div class="dept__grid" id="dept-cards"></div>
+
+      <div class="meter reveal">
+        <h3 class="meter__title" data-i18n="daru.meterTitle">Barati Energy Meter</h3>
+        <div class="meter__bar" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0" id="meter-bar"><i id="meter-fill"></i><span id="meter-pct">0%</span></div>
+        <button class="btn btn--neon" type="button" id="meter-btn" data-i18n="daru.meterBtn">Recharge Barati Energy ⚡</button>
+        <p class="meter__msg" id="meter-msg" role="status" aria-live="polite"></p>
+      </div>
+
+      <p class="dept__disclaimer reveal"><span aria-hidden="true">😄</span> <span data-i18n="daru.disclaimer">This is a humorous, fictional section of the invitation.</span></p>
+    </section>
+
+    <!-- ============ DOWNLOADS ============ -->
+    <section class="section section--cream downloads" id="downloads">
+      <header class="section__head reveal">
+        <div class="orn section__icon" data-orn="kalash" aria-hidden="true"></div>
+        <h2 class="section__title" data-i18n="dl.title">Download Your Invitation</h2>
+        <p class="section__sub" data-i18n="dl.sub">Beautiful A4 PDF cards, created right on your device in your chosen language.</p>
+      </header>
+
+      <div class="dl__grid">
+        <article class="dl-card dl-card--family reveal">
+          <div class="dl-card__preview" aria-hidden="true"><span class="orn" data-orn="kalash"></span></div>
+          <h3 class="dl-card__title" data-i18n="dl.familyTitle">Family &amp; Relatives</h3>
+          <p class="dl-card__desc" data-i18n="dl.familyDesc">Formal, traditional invitation for elders and relatives.</p>
+          <button class="btn btn--maroon btn--block" type="button" data-pdf="family"><span class="btn__icon" aria-hidden="true">⬇</span><span data-i18n="dl.family">Download Family &amp; Relatives PDF</span></button>
+        </article>
+        <article class="dl-card dl-card--friends reveal" style="--d:.12s">
+          <div class="dl-card__preview" aria-hidden="true"><span>🥳</span></div>
+          <h3 class="dl-card__title" data-i18n="dl.friendsTitle">Friends</h3>
+          <p class="dl-card__desc" data-i18n="dl.friendsDesc">Fun invitation for friends.</p>
+          <button class="btn btn--festive btn--block" type="button" data-pdf="friends"><span class="btn__icon" aria-hidden="true">⬇</span><span data-i18n="dl.friends">Download Friends PDF</span></button>
+        </article>
+      </div>
+
+      <div class="dl__options reveal">
+        <p class="dl__lang"><span data-i18n="dl.langNote">PDF language:</span> <strong data-i18n="langName">English</strong></p>
+      </div>
+    </section>
+  </main>
+
+  <!-- ============ FOOTER ============ -->
+  <footer class="footer">
+    <div class="footer__toran orn" data-orn="toran" aria-hidden="true"></div>
+    <p class="footer__names"><span data-w="groom.short">Sonu</span> <span class="amp">&amp;</span> <span data-w="bride.short">Kajal</span></p>
+    <p class="footer__line" data-i18n="footer.line">With love &amp; blessings — The Kanojiya Family</p>
+    <p class="footer__date" data-date-text>Wedding Date &amp; Muhurat – To Be Announced</p>
+    <div class="footer__actions">
+      <button class="btn btn--gold" type="button" id="share-btn"><span aria-hidden="true">🔗</span> <span data-i18n="footer.share">Share Invitation</span></button>
+      <a class="btn btn--ghost" href="#top"><span aria-hidden="true">↑</span> <span data-i18n="footer.top">Back to top</span></a>
+    </div>
+    <p class="footer__made" data-i18n="footer.made">Made with ❤️ for Sonu &amp; Kajal</p>
+    <p class="footer__credit"><span data-i18n="footer.credit">Created by</span> <span data-w="createdBy">Bharat Bisht</span></p>
+  </footer>
+
+  <!-- ============ Barati pass (RSVP confirmation) ============ -->
+  <div class="pass-modal" id="pass-modal" role="dialog" aria-modal="true" aria-labelledby="pass-title" hidden>
+    <div class="pass">
+      <div class="pass__head">
+        <span class="pass__kicker">BARATI PASS</span>
+        <h3 id="pass-title" class="pass__title" data-i18n="fun.passTitle">Barati Pass Confirmed! 🎉</h3>
+      </div>
+      <p class="pass__body" data-i18n="fun.passBody">Welcome to the Baraat!</p>
+      <dl class="pass__rows">
+        <div><dt data-i18n="fun.passNo">Barati No.</dt><dd id="pass-no">#001</dd></div>
+        <div><dt data-i18n="fun.passStatus">Status</dt><dd data-i18n="fun.passConfirmed">Confirmed ✅</dd></div>
+        <div><dt data-i18n="fun.passLevel">Dance Level</dt><dd id="pass-level"></dd></div>
+        <div><dt data-i18n="fun.passValid">Valid for</dt><dd data-i18n="fun.passValidVal">Unlimited food &amp; unlimited dance</dd></div>
+      </dl>
+      <p class="pass__couple"><span data-w="groom.name">Sonu Kanojiya</span> ❤ <span data-w="bride.name">Kajal</span></p>
+      <p class="pass__note" data-i18n="fun.passNote">(Nothing is sent anywhere — this is just for fun!)</p>
+      <button class="btn btn--festive" type="button" id="pass-close" data-i18n="fun.passClose">Done! 🥳</button>
+    </div>
+  </div>
+
+  <!-- ============ PDF progress overlay & toast ============ -->
+  <div class="pdf-overlay" id="pdf-overlay" hidden>
+    <div class="pdf-overlay__box" role="status" aria-live="polite">
+      <div class="spinner orn" data-orn="mandala" aria-hidden="true"></div>
+      <p data-i18n="dl.generating">Preparing your beautiful card…</p>
+    </div>
+  </div>
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+  <script src="js/config.js"></script>
+  <script src="js/translations.js"></script>
+  <script src="js/ornaments.js"></script>
+  <script src="pdfs/manifest.js"></script>
+  <script src="js/pdf.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>

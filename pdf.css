@@ -1,0 +1,237 @@
+/* ==========================================================================
+   PDF LAYOUT — dedicated A4 pages (794 × 1123 CSS px ≈ 210 × 297 mm).
+   Used twice: printed by Chrome for the pre-built vector PDFs, and painted by
+   html2canvas for the in-browser fallback. So only well-supported paint
+   features are used: solid/linear/radial backgrounds, borders, box/text
+   shadows, background-size:cover for photos (no object-fit), and no
+   letter-spacing on Devanagari text.
+   ========================================================================== */
+
+.pdf-stage {
+  --pf-display: 'Cinzel', Georgia, serif;
+  --pf-script: 'Great Vibes', cursive;
+  --pf-body: 'Cormorant Garamond', Georgia, serif;
+  --pf-ui: 'Mukta', Arial, sans-serif;
+  --pf-track: .14em;
+  --pf-text: 17px;
+  --pf-gold: #d4af37;
+  --pf-gold-l: #f3d98b;
+  --pf-cream: #fdf6e3;
+  --pf-maroon: #6d1426;
+  --pf-ink: #3b1a14;
+  --pf-pink: #c2185b;
+
+  position: absolute;
+  left: -12000px;
+  top: 0;
+  width: 794px;
+  pointer-events: none;
+  font-family: var(--pf-body);
+  color: var(--pf-ink);
+  line-height: 1.45;
+  text-align: center;
+}
+.pdf-stage.pdf-dev {
+  --pf-display: 'Yatra One', 'Tiro Devanagari Hindi', serif;
+  --pf-body: 'Tiro Devanagari Hindi', 'Cormorant Garamond', serif;
+  --pf-ui: 'Mukta', 'Tiro Devanagari Hindi', sans-serif;
+  --pf-track: 0;
+  --pf-text: 15.5px;
+}
+.pdf-stage * { box-sizing: border-box; margin: 0; padding: 0; animation: none !important; transition: none !important; }
+.pdf-stage img { display: block; max-width: none; }
+.pdf-stage a { color: inherit; text-decoration: none; }
+
+.pdf-page { position: relative; width: 794px; height: 1123px; overflow: hidden; }
+.pdf-page--royal {
+  color: var(--pf-cream);
+  background:
+    radial-gradient(circle at 50% 32%, rgba(212,175,55,.2), rgba(212,175,55,0) 52%),
+    radial-gradient(circle at 50% 40%, #7e1c31 0%, #5a0f1e 55%, #34070f 100%);
+}
+.pdf-page--cream { background: radial-gradient(circle at 50% 20%, #fffaf0, #f6e9cc 75%, #efdcb4); }
+.pdf-page--fun { background: radial-gradient(circle at 20% 15%, #ffe8c2, #fff4e2 45%, #ffe3ec 100%); }
+.pdf-page--guide { background: radial-gradient(circle at 80% 10%, #ffe3ec, #fff4e2 45%, #ffe8c2 100%); }
+
+/* ---------------------------------------------------- Frames, corners, mandala, toran */
+.pdf-frame { position: absolute; inset: 22px; border: 2.5px solid var(--pf-gold); border-radius: 6px; }
+.pdf-frame--inner { inset: 32px; border-width: 1px; border-color: rgba(243,217,139,.75); }
+.pdf-frame--maroon { border-color: #8b1a2b; }
+.pdf-frame--maroon.pdf-frame--inner { border-color: rgba(212,175,55,.9); }
+.pdf-frame--fun { inset: 20px; border: 6px double var(--pf-pink); border-radius: 18px; }
+.pdf-corner { position: absolute; width: 112px; height: 112px; }
+.pdf-corner--tl { top: 12px; left: 12px; }
+.pdf-corner--tr { top: 12px; right: 12px; }
+.pdf-corner--br { bottom: 12px; right: 12px; }
+.pdf-corner--bl { bottom: 12px; left: 12px; }
+.pdf-page--fun .pdf-corner { width: 84px; height: 84px; }
+.pdf-page--fun .pdf-corner--tl { top: 14px; left: 14px; }
+.pdf-page--fun .pdf-corner--tr { top: 14px; right: 14px; }
+.pdf-page--fun .pdf-corner--br { bottom: 14px; right: 14px; }
+.pdf-page--fun .pdf-corner--bl { bottom: 14px; left: 14px; }
+.pdf-mandala { position: absolute; left: 97px; top: 300px; width: 600px; height: 600px; opacity: .09; }
+.pdf-mandala--faint { opacity: .06; top: 420px; }
+.pdf-toran { position: absolute; top: 34px; left: 120px; width: 554px; height: 54px; }
+.pdf-toran--fun { top: 26px; left: 100px; width: 594px; height: 58px; }
+
+/* Content column: groups are spread evenly over the full page height */
+.pdf-content { position: absolute; left: 70px; right: 70px; display: flex; flex-direction: column; align-items: center; justify-content: space-evenly; }
+.pdf-content--royal { top: 80px; bottom: 44px; }
+.pdf-content--cream { top: 56px; bottom: 56px; }
+.pdf-content--fun { top: 92px; bottom: 44px; left: 58px; right: 58px; }
+.pdf-content--guide { top: 48px; bottom: 44px; left: 58px; right: 58px; }
+.pdf-group { width: 100%; display: flex; flex-direction: column; align-items: center; }
+
+/* Credit line in the bottom page margin, outside the frame */
+.pdf-credit { position: absolute; left: 140px; right: 140px; bottom: 3px; font-family: 'Mukta', var(--pf-ui); font-size: 9.5px; line-height: 16px; letter-spacing: .03em; color: #a8801f; opacity: .9; }
+.pdf-dev .pdf-credit { letter-spacing: 0; }
+.pdf-page--royal .pdf-credit { color: #d4af37; }
+.pdf-page--fun .pdf-credit { color: #c2185b; opacity: .75; }
+
+/* ---------------------------------------------------- Family · formal card */
+.pdf-kalash { width: 40px; height: 45px; }
+.pdf-invocation { margin-top: 4px; font-size: 15px; line-height: 1.4; color: var(--pf-gold-l); }
+.pdf-title { margin-top: 2px; font-family: var(--pf-display); font-weight: 700; font-size: 40px; line-height: 1.25; color: var(--pf-gold); letter-spacing: .04em; text-shadow: 0 2px 8px rgba(0,0,0,.35); }
+.pdf-dev .pdf-title { font-weight: 400; letter-spacing: 0; font-size: 42px; line-height: 1.35; }
+.pdf-divider { width: 240px; height: 24px; margin-top: 4px; }
+.pdf-memory { margin-top: 8px; font-size: 15px; line-height: 1.4; font-style: italic; color: #fff3cc; }
+.pdf-dev .pdf-memory { font-style: normal; }
+.pdf-memory b { color: var(--pf-gold-l); font-weight: 600; }
+.pdf-photos { display: flex; align-items: center; justify-content: center; margin: 6px 0; }
+.pdf-photo {
+  width: 94px; height: 122px; border-radius: 47px 47px 12px 12px;
+  background-size: cover; background-position: 50% 10%; background-color: #4f0d1a;
+  border: 3px solid var(--pf-gold); box-shadow: 0 0 0 2px rgba(243,217,139,.45), 0 8px 18px rgba(0,0,0,.4);
+}
+.pdf-heart {
+  width: 34px; height: 34px; margin: 0 -8px; position: relative; z-index: 2; border-radius: 17px;
+  display: flex; align-items: center; justify-content: center; font-size: 15px; color: #e91e63; line-height: 1;
+  background: radial-gradient(circle, #fff3cc, #d4af37); box-shadow: 0 0 0 3px #5a0f1e;
+}
+.pdf-text { max-width: 580px; font-size: var(--pf-text); line-height: 1.5; color: var(--pf-cream); }
+.pdf-dev .pdf-text { line-height: 1.65; }
+/* Script names: generous line box so swashes/descenders never touch neighbouring lines */
+.pdf-name { margin: 4px 0 2px; font-family: var(--pf-script); font-size: 46px; line-height: 1.3; color: var(--pf-gold-l); text-shadow: 0 0 14px rgba(212,175,55,.35); }
+.pdf-rel { display: flex; justify-content: center; flex-wrap: wrap; font-size: 14px; line-height: 1.5; color: #fff3cc; }
+.pdf-rel i { font-style: normal; color: var(--pf-gold); margin: 0 10px; }
+.pdf-rel b { color: var(--pf-gold-l); font-weight: 600; }
+.pdf-with { margin-top: 8px; font-size: 19px; line-height: 1.3; font-style: italic; color: var(--pf-gold); }
+.pdf-dev .pdf-with { font-style: normal; }
+.pdf-name + .pdf-text { margin-top: 4px; }
+
+.pdf-info { display: flex; align-items: stretch; gap: 12px; width: 100%; margin-top: 10px; text-align: left; }
+.pdf-info__boxes { flex: 1; display: flex; flex-wrap: wrap; gap: 8px; }
+.pdf-box { width: calc(50% - 4px); padding: 8px 12px 9px; border-radius: 10px; border: 1px solid rgba(212,175,55,.55); background: rgba(42,5,12,.38); font-size: 14px; line-height: 1.45; color: var(--pf-cream); }
+.pdf-box--wide { width: 100%; }
+.pdf-box h4 { font-family: var(--pf-ui); font-weight: 700; font-size: 11px; line-height: 1.4; letter-spacing: var(--pf-track); text-transform: uppercase; color: var(--pf-gold); margin-bottom: 2px; }
+.pdf-dev .pdf-box h4 { font-size: 13px; }
+.pdf-box p + p { margin-top: 3px; }
+.pdf-date { font-weight: 700; font-size: 17px; color: var(--pf-gold-l); }
+.pdf-dev .pdf-date { font-size: 16px; }
+.pdf-box .pdf-date + p { margin-top: 0; font-size: 13.5px; }
+.pdf-box small { font-family: var(--pf-ui); font-size: 12px; opacity: .85; }
+.pdf-link { font-family: var(--pf-ui); font-weight: 700; font-size: 13px; line-height: 1.6; color: var(--pf-gold-l); border-bottom: 1px solid rgba(243,217,139,.7); }
+.pdf-box .pdf-link { font-size: 14px; }
+.pdf-link--dark { color: #8b1a2b; border-bottom-color: rgba(139,26,43,.6); }
+.pdf-qr { width: 132px; flex: none; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 6px; padding: 10px 8px; border-radius: 12px; background: #fffaf0; border: 2px solid var(--pf-gold); }
+.pdf-qr img { width: 108px; height: 108px; }
+.pdf-qr span { font-family: var(--pf-ui); font-weight: 700; font-size: 11px; line-height: 1.5; text-align: center; color: #6d1426; }
+.pdf-qr--dark { border-color: #8b1a2b; }
+.pdf-qr--small { width: 118px; padding: 8px 6px; }
+.pdf-qr--small img { width: 92px; height: 92px; }
+.pdf-awaiting { font-size: 15px; line-height: 1.45; color: var(--pf-cream); }
+.pdf-awaiting h4 { font-family: var(--pf-ui); font-weight: 700; font-size: 11.5px; line-height: 1.5; letter-spacing: var(--pf-track); text-transform: uppercase; color: var(--pf-gold); }
+.pdf-awaiting h4 + p + h4 { margin-top: 6px; }
+.pdf-dev .pdf-awaiting h4 { font-size: 14px; }
+.pdf-awaiting b { color: var(--pf-gold-l); }
+
+/* ---------------------------------------------------- Family · family & venue */
+.pdf-kicker { font-family: var(--pf-ui); font-weight: 600; font-size: 13px; line-height: 1.5; letter-spacing: var(--pf-track); text-transform: uppercase; color: #a8801f; }
+.pdf-dev .pdf-kicker { font-size: 15px; }
+.pdf-h2 { margin-top: 2px; font-family: var(--pf-display); font-weight: 700; font-size: 32px; line-height: 1.3; color: var(--pf-maroon); }
+.pdf-dev .pdf-h2 { font-weight: 400; font-size: 34px; line-height: 1.4; }
+.pdf-h3 { margin-top: 20px; font-family: var(--pf-display); font-weight: 700; font-size: 19px; line-height: 1.35; color: var(--pf-maroon); }
+.pdf-dev .pdf-h3 { font-weight: 400; font-size: 21px; }
+.pdf-tree { display: flex; gap: 14px; width: 100%; margin-top: 16px; }
+.pdf-member {
+  flex: 1; display: flex; flex-direction: column; align-items: center; padding: 14px 8px 12px; border-radius: 14px;
+  background: #fffaf0; border: 2px solid var(--pf-gold); box-shadow: 0 0 0 4px rgba(212,175,55,.16);
+}
+.pdf-member__medal {
+  width: 54px; height: 54px; border-radius: 27px; display: flex; align-items: center; justify-content: center; overflow: hidden;
+  font-family: 'Cinzel', serif; font-weight: 700; font-size: 18px; color: #fff3cc; line-height: 1;
+  background: radial-gradient(circle at 35% 30%, #7a1a2e, #3a0812); border: 2px solid var(--pf-gold);
+}
+.pdf-member--memory .pdf-member__medal { font-size: 22px; background: radial-gradient(circle, #5a2a10, #2a0f05); }
+.pdf-member__photo { display: block; width: 100%; height: 100%; background-size: cover; background-position: 50% 8%; }
+.pdf-member__role { margin-top: 6px; font-family: var(--pf-ui); font-weight: 700; font-size: 10.5px; letter-spacing: var(--pf-track); text-transform: uppercase; color: #a8801f; line-height: 1.4; }
+.pdf-dev .pdf-member__role { font-size: 12.5px; }
+.pdf-member__name { margin-top: 2px; font-family: 'Cinzel', serif; font-weight: 700; font-size: 14.5px; line-height: 1.35; color: var(--pf-maroon); }
+.pdf-member__phone { margin-top: 6px; padding: 2px 12px; border-radius: 999px; font-family: var(--pf-ui); font-weight: 700; font-size: 13px; line-height: 1.6; color: #4f0d1a; background: #f3d98b; border: 1px solid var(--pf-gold); }
+.pdf-member--groom { border-width: 3px; }
+.pdf-brothers { display: flex; gap: 10px; width: 100%; margin-top: 10px; }
+.pdf-member--small { padding: 10px 6px; }
+.pdf-member--small .pdf-member__medal { width: 40px; height: 40px; font-size: 14px; }
+.pdf-member--small .pdf-member__name { font-size: 12.5px; }
+.pdf-residence { margin-top: 14px; font-size: 15px; line-height: 1.5; }
+.pdf-residence b { font-family: var(--pf-ui); color: var(--pf-maroon); }
+
+.pdf-route { position: relative; display: flex; justify-content: space-between; width: 100%; height: 104px; margin-top: 14px; padding: 0 6px; }
+.pdf-route__road { position: absolute; left: 40px; right: 40px; top: 46px; height: 18px; border-radius: 9px; background: #3a3a3a; box-shadow: 0 0 0 2px #f3d98b; }
+.pdf-route__road i { position: absolute; left: 10px; right: 10px; top: 8px; border-top: 2px dashed #ffd54f; }
+.pdf-route__car { position: absolute; left: 21%; top: 36px; width: 22px; height: 38px; transform: rotate(-90deg); }
+.pdf-route__stop { position: relative; z-index: 2; width: 150px; display: flex; flex-direction: column; align-items: center; }
+.pdf-route__stop img { width: 26px; height: 35px; }
+.pdf-route__stop span { margin-top: 36px; padding: 1px 12px; border-radius: 999px; font-family: var(--pf-ui); font-weight: 700; font-size: 13.5px; line-height: 1.6; color: #4f0d1a; background: #fffaf0; border: 1px solid var(--pf-gold); }
+.pdf-route__stop.is-dest span { background: #6d1426; color: #f3d98b; border-color: var(--pf-gold); }
+.pdf-venue { display: flex; gap: 16px; align-items: center; width: 100%; margin-top: 14px; padding: 14px 16px; border-radius: 14px; background: #fffaf0; border: 2px solid var(--pf-gold); text-align: left; }
+.pdf-venue__text { flex: 1; font-size: 14.5px; line-height: 1.45; }
+.pdf-venue__text h4 { font-family: var(--pf-display); font-size: 18px; line-height: 1.4; color: var(--pf-maroon); }
+.pdf-dev .pdf-venue__text h4 { font-weight: 400; }
+.pdf-venue__addr { font-weight: 600; font-size: 15.5px; }
+.pdf-venue__coords { font-family: var(--pf-ui); font-size: 12.5px; color: #6b4237; }
+.pdf-venue__links { display: flex; flex-wrap: wrap; gap: 4px 18px; margin-top: 4px; }
+.pdf-venue__note { margin-top: 4px; font-family: var(--pf-ui); font-size: 11.5px; color: #6b4237; }
+
+/* ---------------------------------------------------- Friends · party card */
+.pdf-kicker--fun { color: var(--pf-pink); font-weight: 700; }
+.pdf-fun-title { font-family: var(--pf-display); font-weight: 700; font-size: 38px; line-height: 1.3; color: var(--pf-pink); text-shadow: 2px 2px 0 #ffd54f, 4px 4px 0 rgba(79,13,26,.15); }
+.pdf-dev .pdf-fun-title { font-weight: 400; font-size: 44px; line-height: 1.4; }
+.pdf-fun-sub { margin-top: 6px; font-family: var(--pf-ui); font-weight: 700; font-size: 17px; line-height: 1.5; color: #6d1426; }
+.pdf-stamp { display: inline-block; margin-top: 10px; padding: 1px 16px; border: 3px double #d32f2f; border-radius: 8px; font-family: var(--pf-ui); font-weight: 800; font-size: 15px; line-height: 1.6; letter-spacing: var(--pf-track); text-transform: uppercase; color: #d32f2f; transform: rotate(-6deg); }
+.pdf-photos--fun .pdf-photo { width: 112px; height: 146px; border-radius: 56px 56px 12px 12px; box-shadow: 0 0 0 2px rgba(194,24,91,.35), 0 8px 18px rgba(79,13,26,.25); }
+.pdf-photos--fun .pdf-heart { box-shadow: 0 0 0 3px #fff4e2; }
+.pdf-fun-names { margin-top: 6px; font-family: var(--pf-script); font-size: 44px; line-height: 1.35; color: #6d1426; }
+.pdf-fun-names span { color: var(--pf-gold); }
+.pdf-fun-line { font-family: var(--pf-ui); font-weight: 700; font-size: 16px; line-height: 1.5; color: var(--pf-pink); }
+.pdf-notes { display: flex; flex-wrap: wrap; gap: 12px; width: 100%; }
+.pdf-note { width: calc(50% - 6px); padding: 11px 16px; border-radius: 4px 14px 4px 14px; font-family: var(--pf-ui); font-weight: 600; font-size: 14.5px; line-height: 1.45; text-align: left; color: #3b1a14; box-shadow: 0 4px 10px rgba(79,13,26,.12); }
+.pdf-fun-footer { display: flex; align-items: center; gap: 16px; width: 100%; padding: 12px 16px; border-radius: 14px; background: #6d1426; color: #fdf6e3; text-align: left; }
+.pdf-fun-footer__text { flex: 1; font-family: var(--pf-ui); font-size: 13px; line-height: 1.55; }
+.pdf-fun-footer__text b { color: #f3d98b; }
+.pdf-fun-footer__links { display: flex; flex-wrap: wrap; gap: 0 18px; }
+.pdf-fun-footer .pdf-link { color: #f3d98b; border-bottom-color: rgba(243,217,139,.7); font-size: 13px; }
+.pdf-fun-footer .pdf-qr span { font-size: 10px; }
+
+/* ---------------------------------------------------- Friends · barati guide */
+.pdf-h2--fun { color: var(--pf-pink); }
+.pdf-h3--fun { color: var(--pf-pink); margin-top: 0; }
+.pdf-depts { display: flex; gap: 12px; width: 100%; margin-top: 10px; }
+.pdf-dept { position: relative; flex: 1; padding: 14px 10px 12px; border-radius: 14px; background: #2a1240; color: #fff; border: 2px solid #7cffcb; }
+.pdf-dept__icon { font-size: 26px; line-height: 1.2; }
+.pdf-dept__title { margin-top: 2px; font-family: var(--pf-display); font-weight: 700; font-size: 14.5px; line-height: 1.45; }
+.pdf-dev .pdf-dept__title { font-weight: 400; font-size: 16px; }
+.pdf-dept__text { margin-top: 3px; font-family: var(--pf-ui); font-weight: 600; font-size: 12.5px; line-height: 1.55; color: #7cffcb; }
+.pdf-dept__tag { position: absolute; top: 6px; right: 6px; padding: 0 6px; border-radius: 8px; font-family: var(--pf-ui); font-weight: 800; font-size: 10px; line-height: 1.6; background: #d32f2f; color: #fff; }
+.pdf-signs { display: flex; flex-wrap: wrap; justify-content: center; gap: 10px; margin-top: 12px; }
+.pdf-signs span { padding: 2px 12px; border-radius: 8px; font-family: var(--pf-ui); font-weight: 800; font-size: 13px; line-height: 1.6; color: #fff; background: #1e88e5; border: 2px solid #fff; box-shadow: 0 0 0 2px #1e88e5; }
+.pdf-signs span:nth-child(2n) { background: #e53935; box-shadow: 0 0 0 2px #e53935; }
+.pdf-signs span:nth-child(3n) { background: #43a047; box-shadow: 0 0 0 2px #43a047; }
+.pdf-rules { width: 100%; margin-top: 8px; text-align: left; font-family: var(--pf-ui); font-size: 14.5px; line-height: 1.5; }
+.pdf-rules p { display: flex; gap: 8px; }
+.pdf-rules p + p { margin-top: 4px; }
+.pdf-rules b { flex: none; width: 18px; color: var(--pf-pink); }
+.pdf-disclaimer { margin-top: 10px; padding: 6px 10px; border-radius: 8px; border: 1px dashed var(--pf-pink); font-family: var(--pf-ui); font-size: 11px; line-height: 1.45; color: #6b4237; }
+.pdf-fun-footer--end { gap: 20px; }
+.pdf-fun-names--small { margin: 0; font-size: 38px; line-height: 1.35; color: #f3d98b; white-space: nowrap; }
+.pdf-fun-see { font-weight: 700; font-size: 15px; color: #fff; }
