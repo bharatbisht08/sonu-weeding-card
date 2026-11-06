@@ -104,11 +104,11 @@
 
         <div class="hero__portraits h-anim" style="--i:3">
           <figure class="arch arch--groom">
-            <img src="assets/images/groom.jpg" alt="Sonu Kanojiya, the groom, in a cream sherwani with a maroon velvet dupatta" width="646" height="1199" fetchpriority="high" />
+            <picture><source type="image/webp" srcset="assets/images/groom-360.webp 360w, assets/images/groom-646.webp 646w" sizes="(min-width: 960px) 210px, 34vw" /><img src="assets/images/groom-360.jpg" srcset="assets/images/groom-360.jpg 360w, assets/images/groom.jpg 646w" sizes="(min-width: 960px) 210px, 34vw" alt="Sonu Kanojiya, the groom, in a cream sherwani with a maroon velvet dupatta" width="646" height="1199" decoding="async" fetchpriority="high" /></picture>
           </figure>
           <div class="hero__knot" aria-hidden="true">❤</div>
           <figure class="arch arch--bride">
-            <img src="assets/images/bride.jpg" alt="Kajal, the bride, in a maroon bridal lehenga with gold embroidery" width="646" height="1199" fetchpriority="high" />
+            <picture><source type="image/webp" srcset="assets/images/bride-360.webp 360w, assets/images/bride-646.webp 646w" sizes="(min-width: 960px) 210px, 34vw" /><img src="assets/images/bride-360.jpg" srcset="assets/images/bride-360.jpg 360w, assets/images/bride.jpg 646w" sizes="(min-width: 960px) 210px, 34vw" alt="Kajal, the bride, in a maroon bridal lehenga with gold embroidery" width="646" height="1199" decoding="async" fetchpriority="high" /></picture>
           </figure>
         </div>
 
@@ -141,7 +141,7 @@
           <div class="portrait__frame">
             <span class="portrait__corner orn" data-orn="corner" data-rot="0" aria-hidden="true"></span>
             <span class="portrait__corner portrait__corner--tr orn" data-orn="corner" data-rot="90" aria-hidden="true"></span>
-            <img src="assets/images/groom.jpg" alt="Sonu Kanojiya in his wedding sherwani" loading="lazy" width="646" height="1199" />
+            <picture><source type="image/webp" srcset="assets/images/groom-360.webp 360w, assets/images/groom-646.webp 646w" sizes="(min-width: 960px) 360px, 46vw" /><img src="assets/images/groom-360.jpg" srcset="assets/images/groom-360.jpg 360w, assets/images/groom.jpg 646w" sizes="(min-width: 960px) 360px, 46vw" alt="Sonu Kanojiya in his wedding sherwani" width="646" height="1199" decoding="async" loading="lazy" /></picture>
           </div>
           <p class="portrait__role" data-i18n="couple.groomRole">The Groom</p>
           <h3 class="portrait__name" data-w="groom.name">Sonu Kanojiya</h3>
@@ -154,7 +154,7 @@
           <div class="portrait__frame">
             <span class="portrait__corner orn" data-orn="corner" data-rot="0" aria-hidden="true"></span>
             <span class="portrait__corner portrait__corner--tr orn" data-orn="corner" data-rot="90" aria-hidden="true"></span>
-            <img src="assets/images/bride.jpg" alt="Kajal in her bridal lehenga" loading="lazy" width="646" height="1199" />
+            <picture><source type="image/webp" srcset="assets/images/bride-360.webp 360w, assets/images/bride-646.webp 646w" sizes="(min-width: 960px) 360px, 46vw" /><img src="assets/images/bride-360.jpg" srcset="assets/images/bride-360.jpg 360w, assets/images/bride.jpg 646w" sizes="(min-width: 960px) 360px, 46vw" alt="Kajal in her bridal lehenga" width="646" height="1199" decoding="async" loading="lazy" /></picture>
           </div>
           <p class="portrait__role" data-i18n="couple.brideRole">The Bride</p>
           <h3 class="portrait__name" data-w="bride.name">Kajal</h3>
@@ -266,7 +266,7 @@
         </article>
         <div class="family__line" aria-hidden="true"></div>
         <article class="fcard fcard--groom reveal">
-          <div class="fcard__medal fcard__medal--photo" aria-hidden="true"><img src="assets/images/groom.jpg" alt="" loading="lazy" /></div>
+          <div class="fcard__medal fcard__medal--photo" aria-hidden="true"><picture><source type="image/webp" srcset="assets/images/groom-180.webp 180w, assets/images/groom-360.webp 360w" sizes="64px" /><img src="assets/images/groom-180.jpg" srcset="assets/images/groom-180.jpg 180w, assets/images/groom-360.jpg 360w" sizes="64px" alt="" width="646" height="1199" decoding="async" loading="lazy" /></picture></div>
           <p class="fcard__role" data-i18n="family.groom">The Groom</p>
           <h3 class="fcard__name" data-w="groom.name">Sonu Kanojiya</h3>
           <a class="fcard__call" data-tel="groom.phone"><span aria-hidden="true">📞</span> <span data-w="groom.phone">7982642906</span></a>
@@ -313,6 +313,9 @@
 
         <div class="mapcard reveal" style="--d:.15s">
           <div class="mapcard__frame">
+            <a class="mapcard__placeholder" data-href="venue.mapUrl" target="_blank" rel="noopener" tabindex="-1" aria-hidden="true">
+              <span class="mapcard__placeholder-pin">📍</span><span data-i18n="map.btnOpen">Open Venue in Google Maps</span>
+            </a>
             <iframe id="venue-map" loading="lazy" referrerpolicy="no-referrer-when-downgrade" allowfullscreen
               title="Map of the wedding venue in Khoda Colony, Ghaziabad" data-i18n-attr="title:map.iframeTitle"></iframe>
           </div>
